@@ -13,6 +13,11 @@ import SimpleFormVertical from '@/components/ui/SimpleFormVertical.vue';
 import List from '@/components/List.vue';
 import ListItem from '@/components/ListItem.vue';
 
+const defaultElement = {
+    value: 'example@email.com',
+    name: 'Valeriy Zaluzhniy',
+};
+
 export default {
     components: {
         ListItem,
@@ -28,12 +33,7 @@ export default {
     },
     emits: ['close'],
     setup(props, { emit }) {
-        const emails = reactive([
-            {
-                value: 'example@email.com',
-                name: 'Valeriy Zaluzhniy',
-            },
-        ]);
+        const emails = reactive([defaultElement]);
 
         const hasError = ref(false);
 
@@ -59,6 +59,8 @@ export default {
         function send() {
             alert('Success!');
             emit('close');
+            emails.splice(0, emails.length);
+            emails.push(defaultElement);
         }
 
         function close() {
