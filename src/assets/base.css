@@ -10,9 +10,7 @@
   --c-divider: rgba(51, 51, 51, 0.16);
   --c-divider-2: #dfd8cf;
   --c-divider-3: #d1cac1;
-}
 
-:root {
   --color-background: var(--c-brown-light);
   --color-background-2: #fff;
   --color-background-3: var(--c-brown-light-2);

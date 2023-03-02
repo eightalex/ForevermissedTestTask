@@ -7,6 +7,14 @@ defineProps({
         type: String,
         default: '',
     },
+    buttonText: {
+        type: String,
+        default: 'Send',
+    },
+    counter: {
+        type: Number,
+        default: 0,
+    },
 });
 </script>
 
@@ -15,10 +23,10 @@ defineProps({
         <InputCustom class="simple-form-vertical__input" :placeholder="placeholder"/>
         <div class="simple-form-vertical__footer">
             <var class="simple-form-vertical__counter">
-                4 recipients
+                {{ counter }} recipients
             </var>
-            <ButtonCustom class="simple-form-vertical__btn">
-                <slot>Send</slot>
+            <ButtonCustom class="simple-form-vertical__btn" @click="$emit('send')">
+                {{ buttonText }}
             </ButtonCustom>
         </div>
     </div>

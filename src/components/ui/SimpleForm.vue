@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import InputCustom from '@/components/ui/InputCustom.vue';
 import ButtonCustom from '@/components/ui/ButtonCustom.vue';
 
@@ -7,14 +8,34 @@ defineProps({
         type: String,
         default: '',
     },
+    buttonText: {
+        type: String,
+        default: 'Add',
+    },
+    hasError: {
+        type: Boolean,
+        default: false,
+    },
 });
+
+const value = ref('');
 </script>
 
 <template>
     <div class="simple-form">
-        <InputCustom class="simple-form__input" type="email" :placeholder="placeholder"/>
-        <ButtonCustom class="simple-form__btn" type="light">
-            <slot></slot>
+        <InputCustom
+            class="simple-form__input"
+            type="email"
+            v-model="value"
+            :hasError="hasError"
+            :placeholder="placeholder"
+        />
+        <ButtonCustom
+            class="simple-form__btn"
+            type="light"
+            @click="$emit('send', value)"
+        >
+            {{ buttonText }}
         </ButtonCustom>
     </div>
 </template>
