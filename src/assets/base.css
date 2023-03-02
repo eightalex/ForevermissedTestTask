@@ -1,0 +1,53 @@
+:root {
+  --c-brown: #3e1007;
+  --c-brown-light: #fff8ef;
+  --c-brown-light-2: #f6efe6;
+
+  --c-text: #3c1f1d;
+  --c-text-light: #876a68;
+  --c-text-light-2: #acaaad;
+
+  --c-divider: rgba(51, 51, 51, 0.16);
+  --c-divider-2: #dfd8cf;
+  --c-divider-3: #d1cac1;
+}
+
+:root {
+  --color-background: var(--c-brown-light);
+  --color-background-2: #fff;
+  --color-background-3: var(--c-brown-light-2);
+
+  --color-border: var(--c-divider);
+  --color-border-2: var(--c-divider-2);
+  --color-border-3: var(--c-brown);
+  --color-border-4: var(--c-divider-3);
+
+  --color-text: var(--c-text);
+  --color-text-2: #fff;
+  --color-text-3: var(--c-text-light);
+  --color-text-placeholder: var(--c-text-light-2);
+
+  --gradient: linear-gradient(90deg, #64362d 0%, #82544b 100%);
+
+  --border-radius: 6px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  line-height: 16px;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
