@@ -23,7 +23,7 @@ There was not enough time for that.
 
 ### Mobile
 
-There was not enough time for that.
+There was no such task.
 
 ### Fonts
 

@@ -1,12 +1,17 @@
 <script setup>
+import { ref } from 'vue';
 import Popup from '@/components/Popup.vue';
+import ButtonCustom from '@/components/ui/ButtonCustom.vue';
+
+const showModal = ref(false);
+
+
 </script>
 
 <template>
     <main class="main">
-        <transition name="modal">
-            <Popup/>
-        </transition>
+        <ButtonCustom class="btn" @click="showModal = true">Show Modal</ButtonCustom>
+        <Popup v-show="showModal" @close="showModal = false"/>
     </main>
 </template>
 
@@ -26,5 +31,13 @@ import Popup from '@/components/Popup.vue';
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.32);
+}
+
+.btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 </style>

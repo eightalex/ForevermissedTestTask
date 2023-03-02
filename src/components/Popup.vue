@@ -1,11 +1,100 @@
+Please fix hasError variable:
+
+<script>
+import { reactive, ref } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
+import { uniqueNamesGenerator, names } from 'unique-names-generator';
+import { Validator } from '@/utils/Validator';
+import IconCross from '@/components/icons/IconCross.vue';
+import InputCustom from '@/components/ui/InputCustom.vue';
+import IconYahoo from '@/components/icons/IconYahoo.vue';
+import IconGmail from '@/components/icons/IconGmail.vue';
+import IconAol from '@/components/icons/IconAol.vue';
+import IconIcloud from '@/components/icons/IconIcloud.vue';
+import SimpleForm from '@/components/ui/SimpleForm.vue';
+import SimpleFormVertical from '@/components/ui/SimpleFormVertical.vue';
+import List from '@/components/List.vue';
+import ListItem from '@/components/ListItem.vue';
+
+export default {
+    components: {
+        ListItem,
+        List,
+        SimpleFormVertical,
+        SimpleForm,
+        IconIcloud,
+        IconAol,
+        IconGmail,
+        IconYahoo,
+        InputCustom,
+        IconCross,
+    },
+    emits: ['close'],
+    setup(props, { emit }) {
+        const emails = reactive([
+            {
+                id: uuidv4(),
+                value: 'example@email.com',
+                name: 'Valeriy Zaluzhniy',
+            },
+        ]);
+
+        const hasError = ref(false);
+
+        function validateEmail(value) {
+            return Validator.checkEmail(value) && emails.every(email => email.value !== value);
+        }
+
+        function addEmail(value) {
+            hasError.value = !validateEmail(value);
+
+            if (value && !hasError.value) {
+                emails.push({
+                    id: uuidv4(),
+                    value,
+                    name: uniqueNamesGenerator({dictionaries: [names]}),
+                });
+            }
+        }
+
+        function removeEmail(index) {
+            emails.splice(index, 1);
+        }
+
+        function send() {
+            alert('Success!');
+            emit('close');
+        }
+
+        function close() {
+            emit('close');
+        }
+
+        return {
+            emails,
+            hasError,
+            addEmail,
+            removeEmail,
+            send,
+            close,
+        };
+    },
+};
+</script>
+
 <template>
     <div class="popup">
         <header class="popup__header">
             <h2 class="popup__title">
                 Invite others
-                <IconCross class="popup__close"/>
+                <IconCross class="popup__close" @click="close"/>
             </h2>
-            <SimpleForm placeholder="Enter people E-mails">Add</SimpleForm>
+            <SimpleForm
+                placeholder="Enter people E-mails"
+                buttonText="Add"
+                :hasError="hasError"
+                @send="addEmail"
+            />
             <div class="popup__socials">
                 or add from
                 <div class="popup__social-icons">
@@ -19,81 +108,33 @@
 
         <div class="popup__body">
             <List>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
-                <ListItem>
-                    example@email.com
-                    <template #name>Valeriy Zaluzhniy</template>
-                </ListItem>
+                <ListItem
+                    v-for="(email, index) in emails"
+                    :key="email.id"
+                    :email="email.value"
+                    :name="email.name"
+                    @delete="removeEmail(index)"
+                />
             </List>
         </div>
 
         <footer class="popup__footer">
-            <SimpleFormVertical placeholder="Personal message (optional)">Send</SimpleFormVertical>
+            <SimpleFormVertical
+                placeholder="Personal message (optional)"
+                :counter="emails.length"
+                buttonText="Send"
+                @send="send"
+            />
         </footer>
     </div>
 </template>
-
-<script>
-import IconCross from '@/components/icons/IconCross.vue';
-import InputCustom from '@/components/ui/InputCustom.vue';
-import IconYahoo from '@/components/icons/IconYahoo.vue';
-import IconGmail from '@/components/icons/IconGmail.vue';
-import IconAol from '@/components/icons/IconAol.vue';
-import IconIcloud from '@/components/icons/IconIcloud.vue';
-import SimpleForm from '@/components/ui/SimpleForm.vue';
-import SimpleFormVertical from '@/components/ui/SimpleFormVertical.vue';
-import List from '@/components/List.vue';
-import ListItem from '@/components/ListItem.vue';
-
-export default {
-    name: 'Popup',
-    components: {
-        ListItem,
-        List, SimpleFormVertical, SimpleForm, IconIcloud, IconAol, IconGmail, IconYahoo, InputCustom, IconCross},
-};
-</script>
 
 <style scoped>
 .popup {
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index: 2;
+    z-index: 3;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
