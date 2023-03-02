@@ -4,8 +4,6 @@ import Popup from '@/components/Popup.vue';
 import ButtonCustom from '@/components/ui/ButtonCustom.vue';
 
 const showModal = ref(false);
-
-
 </script>
 
 <template>
