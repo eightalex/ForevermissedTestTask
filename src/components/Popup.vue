@@ -1,8 +1,5 @@
-Please fix hasError variable:
-
 <script>
 import { reactive, ref } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
 import { uniqueNamesGenerator, names } from 'unique-names-generator';
 import { Validator } from '@/utils/Validator';
 import IconCross from '@/components/icons/IconCross.vue';
@@ -33,7 +30,6 @@ export default {
     setup(props, { emit }) {
         const emails = reactive([
             {
-                id: uuidv4(),
                 value: 'example@email.com',
                 name: 'Valeriy Zaluzhniy',
             },
@@ -50,7 +46,6 @@ export default {
 
             if (value && !hasError.value) {
                 emails.push({
-                    id: uuidv4(),
                     value,
                     name: uniqueNamesGenerator({dictionaries: [names]}),
                 });
@@ -110,7 +105,7 @@ export default {
             <List>
                 <ListItem
                     v-for="(email, index) in emails"
-                    :key="email.id"
+                    :key="email.value"
                     :email="email.value"
                     :name="email.name"
                     @delete="removeEmail(index)"
