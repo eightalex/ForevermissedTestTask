@@ -8,12 +8,12 @@ Vite was used, not Webpack or any other tool, because WebStorm has just such a t
 This is done solely for the purpose of speeding up the work, because I don't have much time.
 In the work, we can use anything else, for example, Webpack or Rollup.
 
-### Змінні
+### CSS Variables
 
 Need to discuss: too many colors, need to refactor.
 May be replaced using CSS preprocessors like SASS.
 
-### Іконки
+### Icons
 
 Icon has been minified using svgo. Need to be as links.
 
