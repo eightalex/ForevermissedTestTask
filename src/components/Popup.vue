@@ -9,7 +9,7 @@ import IconGmail from '@/components/icons/IconGmail.vue';
 import IconAol from '@/components/icons/IconAol.vue';
 import IconIcloud from '@/components/icons/IconIcloud.vue';
 import SimpleForm from '@/components/ui/NewGuestForm.vue';
-import SimpleFormVertical from '@/components/ui/SimpleFormVertical.vue';
+import SimpleFormVertical from '@/components/ui/SubmissionForm.vue';
 import List from '@/components/List.vue';
 import ListItem from '@/components/ListItem.vue';
 
