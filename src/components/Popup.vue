@@ -8,8 +8,8 @@ import IconYahoo from '@/components/icons/IconYahoo.vue';
 import IconGmail from '@/components/icons/IconGmail.vue';
 import IconAol from '@/components/icons/IconAol.vue';
 import IconIcloud from '@/components/icons/IconIcloud.vue';
-import SimpleForm from '@/components/ui/NewGuestForm.vue';
-import SimpleFormVertical from '@/components/ui/SubmissionForm.vue';
+import NewGuestForm from '@/components/ui/NewGuestForm.vue';
+import SubmissionForm from '@/components/ui/SubmissionForm.vue';
 import List from '@/components/List.vue';
 import ListItem from '@/components/ListItem.vue';
 
@@ -22,8 +22,8 @@ export default {
     components: {
         ListItem,
         List,
-        SimpleFormVertical,
-        SimpleForm,
+        SubmissionForm,
+        NewGuestForm,
         IconIcloud,
         IconAol,
         IconGmail,
@@ -86,7 +86,7 @@ export default {
                 Invite others
                 <IconCross class="popup__close" @click="close"/>
             </h2>
-            <SimpleForm
+            <NewGuestForm
                 placeholder="Enter people E-mails"
                 buttonText="Add"
                 :hasError="hasError"
@@ -116,7 +116,7 @@ export default {
         </div>
 
         <footer class="popup__footer">
-            <SimpleFormVertical
+            <SubmissionForm
                 placeholder="Personal message (optional)"
                 :counter="emails.length"
                 buttonText="Send"

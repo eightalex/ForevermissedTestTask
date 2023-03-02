@@ -9,7 +9,9 @@ const showModal = ref(false);
 <template>
     <main class="main">
         <ButtonCustom class="btn" @click="showModal = true">Invite Friends</ButtonCustom>
-        <Popup v-show="showModal" @close="showModal = false"/>
+        <Teleport to="body">
+            <Popup v-show="showModal" @close="showModal = false"/>
+        </Teleport>
     </main>
 </template>
 
