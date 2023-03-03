@@ -33,16 +33,16 @@ const send = async () => {
 </script>
 
 <template>
-    <div class="simple-form">
+    <div class="new-guest-form">
         <InputCustom
-            class="simple-form__input"
+            class="new-guest-form__input"
             type="email"
             v-model="value"
             :hasError="hasError"
             :placeholder="placeholder"
         />
         <ButtonCustom
-            class="simple-form__btn"
+            class="new-guest-form__btn"
             type="light"
             @click="send"
         >
@@ -52,16 +52,16 @@ const send = async () => {
 </template>
 
 <style scoped>
-.simple-form {
+.new-guest-form {
     display: flex;
     gap: 12px;
 }
 
-.simple-form__input {
+.new-guest-form__input {
     flex-grow: 1;
 }
 
-.simple-form__btn {
+.new-guest-form__btn {
     flex-basis: 79px;
 }
 </style>
