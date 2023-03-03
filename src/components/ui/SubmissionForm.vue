@@ -19,13 +19,13 @@ defineProps({
 </script>
 
 <template>
-    <div class="simple-form-vertical">
-        <InputCustom class="simple-form-vertical__input" :placeholder="placeholder"/>
-        <div class="simple-form-vertical__footer">
-            <var class="simple-form-vertical__counter">
+    <div class="submission-form">
+        <InputCustom class="submission-form__input" :placeholder="placeholder"/>
+        <div class="submission-form__footer">
+            <var class="submission-form__counter">
                 {{ counter }} recipients
             </var>
-            <ButtonCustom class="simple-form-vertical__btn" @click="$emit('send')">
+            <ButtonCustom class="submission-form__btn" @click="$emit('send')">
                 {{ buttonText }}
             </ButtonCustom>
         </div>
@@ -33,29 +33,29 @@ defineProps({
 </template>
 
 <style scoped>
-.simple-form-vertical {
+.submission-form {
     display: flex;
     gap: 24px;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.simple-form-vertical__input {
+.submission-form__input {
     width: 100%;
 }
 
-.simple-form-vertical__footer {
+.submission-form__footer {
     display: flex;
     align-items: center;
     gap: 24px;
 }
 
-.simple-form-vertical__counter {
+.submission-form__counter {
     color: var(--color-text-3);
     font-style: normal;
 }
 
-.simple-form-vertical__btn {
+.submission-form__btn {
     width: 160px;
 }
 </style>
